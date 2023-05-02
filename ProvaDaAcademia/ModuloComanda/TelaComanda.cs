@@ -223,12 +223,14 @@ namespace ProvaDaAcademia.ModuloComanda
         {
             Comanda f = (Comanda)a;
             Console.WriteLine($"id: {f.id} | Quantidade para Pagar: {f.quantidadeParaPagar} | Em Aberto: {f.EmAberto} | Dia da Abertura { f.diaDeAbertura}");
+            Console.WriteLine("Lista de Pedidos");
             foreach (var item in listaDePedidos)
             {
-                Console.WriteLine("Lista de Pedidos");
+                
                 Console.WriteLine($"Produto {item.produto.nome} | Quantidade {item.quantidade}");
 
             }
+            Console.WriteLine("____________________________________________________________________________");
         }
         public override void MenuInicial(string nome, string opcao)
         {

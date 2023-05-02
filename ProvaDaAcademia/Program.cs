@@ -27,6 +27,9 @@ namespace ProvaDaAcademia
                 telaProduto, garcomRepository, telaGarcom);
 
             telaProduto.AdicionaAlgunsRegistros();
+            telaGarcom.AdicionaAlgunsRegistros();
+            telaMesa.AdicionaAlgunsRegistros();
+            telaComanda.AdicionaAlgunsRegistros();
 
 
 

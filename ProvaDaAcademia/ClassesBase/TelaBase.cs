@@ -14,6 +14,7 @@ namespace ProvaDaAcademia.ClassesBase
             Console.ForegroundColor = cor;
             Console.WriteLine(mensagem);
             Console.ResetColor();
+            Console.WriteLine("Aperte qualquer tecla para continuar...");
             Console.ReadKey();
         }
         public bool VerificaListasValidas(string tipo, RepositoryBase repository)
@@ -21,6 +22,7 @@ namespace ProvaDaAcademia.ClassesBase
             if (repository.RetornarTodos().Count == 0)
             {
                 ApresentaMensagem($"Nenhum {tipo} Registradado", ConsoleColor.DarkYellow);
+               
                 return false;
             }
             else
@@ -55,6 +57,7 @@ namespace ProvaDaAcademia.ClassesBase
             {
                 repositorio.Inserir(novaEntidade);
                 ApresentaMensagem($"{nomeDaEntidade} Adicionado(a)", ConsoleColor.Green);
+               
             }
         }
         public abstract EntidadeBase PegaDadosEntidade();
@@ -69,6 +72,7 @@ namespace ProvaDaAcademia.ClassesBase
                 {
                     EscreveTodasAsEntidades(a);
                 }
+
             }
         }
         public abstract void EscreveTodasAsEntidades(EntidadeBase a);
