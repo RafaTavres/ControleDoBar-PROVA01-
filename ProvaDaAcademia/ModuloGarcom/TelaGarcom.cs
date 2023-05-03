@@ -32,6 +32,7 @@ namespace ProvaDaAcademia.ModuloGarcom
         {
             Garcom f = (Garcom)a;
             Console.WriteLine($"id: {f.id} | Nome: {f.nome} | CNPJ : {f.CNPJ}");
+            Console.WriteLine("____________________________________________________________________________");
 
         }
         public void MostraTodasOsGarcons()

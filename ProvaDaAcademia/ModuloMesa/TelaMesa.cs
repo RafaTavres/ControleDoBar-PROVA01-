@@ -31,6 +31,7 @@ namespace ProvaDaAcademia.ModuloMesa
         {
             Mesa f = (Mesa)a;
             Console.WriteLine($"id: {f.id} | Numero: {f.numero} | Ocupada?: {f.Ocupada} | Local: {f.localDaMesa}");
+            Console.WriteLine("____________________________________________________________________________");
 
         }
         public void MostraTodasAsMesas()

@@ -31,6 +31,7 @@ namespace ProvaDaAcademia.ModuloProduto
         {
             Produto f = (Produto)a;
             Console.WriteLine($"id: {f.id} | Nome: {f.nome} | Tipo : {f.tipo} | Preço: {f.preco}");
+            Console.WriteLine("____________________________________________________________________________");
 
         }
         public void MostraTodasOsProdutos()

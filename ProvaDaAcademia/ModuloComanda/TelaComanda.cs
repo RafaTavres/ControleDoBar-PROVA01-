@@ -141,10 +141,8 @@ namespace ProvaDaAcademia.ModuloComanda
             }
             comanda.diaDeAbertura = DateTime.Now.Date;
 
-            listaDePedidos = new List<Pedido>();
-
             comanda.EmAberto = true;
-
+            comanda.listaDePedidos = new List<Pedido>();
             return comanda;
         }
         public void AdicionaAlgunsRegistros()
@@ -155,7 +153,7 @@ namespace ProvaDaAcademia.ModuloComanda
             comanda.mesa = mesaRepository.Busca(idDeBusca);
             comanda.garcom = garcomRepository.Busca(idDeBusca);
             comanda.diaDeAbertura = DateTime.Now.Date;
-            listaDePedidos = new List<Pedido>();
+            comanda.listaDePedidos= new List<Pedido>();
             comanda.EmAberto = true;
             Adiciona("comanda", comanda, comandaRepository);
         }
@@ -163,14 +161,23 @@ namespace ProvaDaAcademia.ModuloComanda
         {
             VizualizarComandas();
             Console.WriteLine("ID da Comanda");
-            int idDaBusca =  Convert.ToInt32(Console.ReadLine());
+            int idDaBusca = 0;
+            try 
+            { 
+                idDaBusca = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                ApresentaMensagem("Formato Inválido",ConsoleColor.DarkYellow);
+                Console.Clear();
+                return;
+            }
             Comanda comanda = comandaRepository.Busca(idDaBusca);
             if(comanda.EmAberto ==  true)
             {
                 Console.WriteLine("Pedidos:");
-                comanda.pedido = RegistrarPedidos();
-                listaDePedidos.Add(comanda.pedido);
-                comanda.listaDePedidos = listaDePedidos;
+                comanda.pedido = RegistrarPedidos();               
+                comanda.listaDePedidos.Add(comanda.pedido);
                 comanda.quantidadeParaPagar += Convert.ToInt32(comanda.pedido.produto.preco * comanda.pedido.quantidade);
                 ApresentaMensagem("Pedido Adiciona com sucesso", ConsoleColor.Green);
             }
@@ -187,7 +194,7 @@ namespace ProvaDaAcademia.ModuloComanda
             int idDaBusca = Convert.ToInt32(Console.ReadLine());
             Comanda comanda = comandaRepository.Busca(idDaBusca);
             comanda.pedido = comanda.pedido;
-            listaDePedidos.Remove(comanda.pedido);
+            comanda.listaDePedidos.Remove(comanda.pedido);
             comanda.listaDePedidos = listaDePedidos;
             ApresentaMensagem("Pedido deletado com sucesso", ConsoleColor.Green);
             comanda.quantidadeParaPagar -= Convert.ToInt32(comanda.pedido.produto.preco * comanda.pedido.quantidade);
@@ -222,9 +229,9 @@ namespace ProvaDaAcademia.ModuloComanda
         public override void EscreveTodasAsEntidades(EntidadeBase a)
         {
             Comanda f = (Comanda)a;
-            Console.WriteLine($"id: {f.id} | Quantidade para Pagar: {f.quantidadeParaPagar} | Em Aberto: {f.EmAberto} | Dia da Abertura { f.diaDeAbertura}");
+            Console.WriteLine($"id: {f.id} | Quantidade para Pagar: {f.quantidadeParaPagar} | Em Aberto: {f.EmAberto} | Dia da Abertura { f.diaDeAbertura.Date}");
             Console.WriteLine("Lista de Pedidos");
-            foreach (var item in listaDePedidos)
+            foreach (var item in f.listaDePedidos)
             {
                 
                 Console.WriteLine($"Produto {item.produto.nome} | Quantidade {item.quantidade}");
