@@ -44,7 +44,7 @@ namespace ProvaDaAcademia
                 }
                 if (opcao == "2")
                 {
-                    while (opcao.ToUpper() != "S")
+                    while(opcao.ToUpper() != "S")
                     {
                         Console.Clear();
                         Console.WriteLine("1- Menu Garcom | 2- Menu Mesa | 3- Menu Produto  S- sair");
