@@ -13,17 +13,17 @@ namespace ProvaDaAcademia.ModuloComanda
 {
     internal class TelaComanda : TelaBase
     {
-        public ComandaRepository comandaRepository;
-        public MesaRepository mesaRepository;
+        public ComandaRepository <Comanda> comandaRepository;
+        public MesaRepository<Mesa> mesaRepository;
         public TelaMesa telaMesa;
-        public ProdutoRepository produtoRepository;
+        public ProdutoRepository<Produto> produtoRepository;
         public TelaProduto telaProduto;
-        public GarcomRepository garcomRepository;
+        public GarcomRepository<Garcom> garcomRepository;
         public TelaGarcom telaGarcom;
         public List<Pedido> listaDePedidos;
 
-        public TelaComanda(ComandaRepository comandaRepository, MesaRepository mesaRepository, TelaMesa telamesa, ProdutoRepository produtoRepository, TelaProduto telaProduto,
-            GarcomRepository garcomRepository, TelaGarcom telaGarcom)
+        public TelaComanda(ComandaRepository<Comanda> comandaRepository, MesaRepository<Mesa> mesaRepository, TelaMesa telamesa, ProdutoRepository<Produto> produtoRepository, TelaProduto telaProduto,
+            GarcomRepository<Garcom> garcomRepository, TelaGarcom telaGarcom)
         {
             this.comandaRepository = comandaRepository;
             this.mesaRepository = mesaRepository;
@@ -98,13 +98,13 @@ namespace ProvaDaAcademia.ModuloComanda
             Console.WriteLine(faturamentoDiario);
             
         }
-        public void MostraTodasEntidadeAbertas(string tipoDeEntidade, RepositoryBase repositorio)
+        public void MostraTodasEntidadeAbertas(string tipoDeEntidade, RepositoryBase<EntidadeBase> repositorio)
         {
             Console.WriteLine($"{tipoDeEntidade}: ");
             Console.WriteLine("____________________________________________________________________________");
             if (VerificaListasValidas(tipoDeEntidade, repositorio) == true)
             {
-                    ComandaRepository comandaRepository = (ComandaRepository) repositorio;
+                    ComandaRepository<Comanda> comandaRepository = (ComandaRepository<Comanda>) repositorio;
                 foreach (var item in comandaRepository.RetornarTodos())
                 {
                     int i = 1;
@@ -124,10 +124,11 @@ namespace ProvaDaAcademia.ModuloComanda
             Comanda comanda = new Comanda();
             try
             {
+                
                 telaMesa.MostraTodasAsMesas();
                 Console.WriteLine("Id da Mesa");
                 idDeBusca = Convert.ToInt32(Console.ReadLine());
-                comanda.mesa = mesaRepository.Busca(idDeBusca);
+                comanda.mesa = mesaRepository.BuscaMesasVazias(idDeBusca);                
 
                 telaGarcom.MostraTodasOsGarcons();
                 Console.WriteLine("Id do Garcom");
@@ -142,6 +143,9 @@ namespace ProvaDaAcademia.ModuloComanda
             comanda.diaDeAbertura = DateTime.Now.Date;
 
             comanda.EmAberto = true;
+            if (comanda.mesa.Ocupada != null)
+                comanda.mesa.Ocupada = true;
+
             comanda.listaDePedidos = new List<Pedido>();
             return comanda;
         }
@@ -155,7 +159,7 @@ namespace ProvaDaAcademia.ModuloComanda
             comanda.diaDeAbertura = DateTime.Now.Date;
             comanda.listaDePedidos= new List<Pedido>();
             comanda.EmAberto = true;
-            Adiciona("comanda", comanda, comandaRepository);
+            Adiciona("comanda", comanda,comandaRepository);
         }
         public void AdicionarPedidosAComanda()
         {
@@ -193,7 +197,6 @@ namespace ProvaDaAcademia.ModuloComanda
             Console.WriteLine("ID da Comanda");
             int idDaBusca = Convert.ToInt32(Console.ReadLine());
             Comanda comanda = comandaRepository.Busca(idDaBusca);
-            comanda.pedido = comanda.pedido;
             comanda.listaDePedidos.Remove(comanda.pedido);
             comanda.listaDePedidos = listaDePedidos;
             ApresentaMensagem("Pedido deletado com sucesso", ConsoleColor.Green);

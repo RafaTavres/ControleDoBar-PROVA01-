@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProvaDaAcademia.ClassesBase
 {
-    internal abstract class RepositoryBase
+    internal abstract class RepositoryBase<T>
     {
         protected int id = 1;
         protected List<EntidadeBase> listaEntidades = new List<EntidadeBase>();

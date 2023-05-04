@@ -11,9 +11,9 @@ namespace ProvaDaAcademia.ModuloGarcom
 {
     internal class TelaGarcom : TelaBase
     {
-        public GarcomRepository garcomRepository;
+        public GarcomRepository<Garcom> garcomRepository;
 
-        public TelaGarcom(GarcomRepository garcomRepository)
+        public TelaGarcom(GarcomRepository<Garcom> garcomRepository)
         {
             this.garcomRepository = garcomRepository;
         }

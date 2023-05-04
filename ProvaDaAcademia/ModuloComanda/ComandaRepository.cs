@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProvaDaAcademia.ModuloComanda
 {
-    internal class ComandaRepository : RepositoryBase
+    internal class ComandaRepository<T> : RepositoryBase<EntidadeBase>
     {
         public ComandaRepository(List<EntidadeBase> listaDeEntidades)
         {

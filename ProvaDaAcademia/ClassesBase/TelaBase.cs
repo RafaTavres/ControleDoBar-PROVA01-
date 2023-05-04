@@ -17,7 +17,7 @@ namespace ProvaDaAcademia.ClassesBase
             Console.WriteLine("Aperte qualquer tecla para continuar...");
             Console.ReadKey();
         }
-        public bool VerificaListasValidas(string tipo, RepositoryBase repository)
+        public bool VerificaListasValidas(string tipo, RepositoryBase<EntidadeBase> repository)
         {
             if (repository.RetornarTodos().Count == 0)
             {
@@ -46,7 +46,7 @@ namespace ProvaDaAcademia.ClassesBase
 
         public abstract void MenuEntidade(string opcao);
 
-        public void Adiciona(string nomeDaEntidade, EntidadeBase novaEntidade, RepositoryBase repositorio)
+        protected void Adiciona(string nomeDaEntidade, EntidadeBase novaEntidade, RepositoryBase<EntidadeBase> repositorio)
         {
             if (repositorio.VerificaObjetosComErro(novaEntidade) == true)
             {
@@ -62,7 +62,7 @@ namespace ProvaDaAcademia.ClassesBase
         }
         public abstract EntidadeBase PegaDadosEntidade();
 
-        public virtual void MostraTodasEntidade(string tipoDeEntidade, RepositoryBase repositorio)
+        public virtual void MostraTodasEntidade(string tipoDeEntidade, RepositoryBase<EntidadeBase> repositorio)
         {
             Console.WriteLine($"{tipoDeEntidade}: ");
             Console.WriteLine("____________________________________________________________________________");
@@ -77,7 +77,7 @@ namespace ProvaDaAcademia.ClassesBase
         }
         public abstract void EscreveTodasAsEntidades(EntidadeBase a);
 
-        public virtual void AtualizarEntidade(RepositoryBase repositorio)
+        public virtual void AtualizarEntidade(RepositoryBase <EntidadeBase> repositorio)
         {
 
             int idParaEditar = BuscaiD(repositorio);
@@ -87,7 +87,7 @@ namespace ProvaDaAcademia.ClassesBase
             repositorio.Atualizar(idParaEditar, entidade);
         }
 
-        public virtual void DeletaEntidade(RepositoryBase repositorio)
+        public virtual void DeletaEntidade(RepositoryBase<EntidadeBase>    repositorio)
         {
 
             int idParaEditar = BuscaiD(repositorio);
@@ -97,7 +97,7 @@ namespace ProvaDaAcademia.ClassesBase
             int idParaDeletar = Convert.ToInt32(Console.ReadLine());
             repositorio.Deletar(idParaDeletar);
         }
-        public int BuscaiD(RepositoryBase repositorio)
+        public int BuscaiD(RepositoryBase<EntidadeBase> repositorio)
         {
             int idParaDeletar = 0;
             try

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProvaDaAcademia.ModuloProduto
 {
-    internal class ProdutoRepository : RepositoryBase
+    internal class ProdutoRepository<T> : RepositoryBase<EntidadeBase>
     {
         public ProdutoRepository(List<EntidadeBase> listaDeEntidades)
         {

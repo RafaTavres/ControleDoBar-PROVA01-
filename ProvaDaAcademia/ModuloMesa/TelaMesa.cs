@@ -10,9 +10,9 @@ namespace ProvaDaAcademia.ModuloMesa
 {
     internal class TelaMesa : TelaBase
     {
-        public MesaRepository mesaRepository;
+        public MesaRepository<Mesa> mesaRepository;
 
-        public TelaMesa(MesaRepository mesaRepository)
+        public TelaMesa(MesaRepository<Mesa> mesaRepository)
         {
             this.mesaRepository = mesaRepository;
         }

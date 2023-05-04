@@ -12,17 +12,17 @@ namespace ProvaDaAcademia
         static void Main(string[] args)
         {
             string opcao = "";
-            MesaRepository mesaRepository = new MesaRepository(new List<EntidadeBase>());
+            MesaRepository<Mesa> mesaRepository = new MesaRepository<Mesa>(new List<EntidadeBase>());
             TelaMesa telaMesa = new TelaMesa(mesaRepository);
 
-            GarcomRepository garcomRepository = new GarcomRepository(new List<EntidadeBase>());
+            GarcomRepository<Garcom> garcomRepository = new GarcomRepository<Garcom>(new List<EntidadeBase>());
             TelaGarcom telaGarcom = new TelaGarcom(garcomRepository);
 
-            ProdutoRepository produtoRepository = new ProdutoRepository(new List<EntidadeBase>());
+            ProdutoRepository<Produto> produtoRepository = new ProdutoRepository<Produto>(new List<EntidadeBase>());
             TelaProduto telaProduto = new TelaProduto(produtoRepository);
 
 
-            ComandaRepository comandaRepository = new ComandaRepository(new List<EntidadeBase>());
+            ComandaRepository<Comanda> comandaRepository = new ComandaRepository<Comanda>(new List<EntidadeBase>());
             TelaComanda telaComanda = new TelaComanda(comandaRepository, mesaRepository, telaMesa, produtoRepository,
                 telaProduto, garcomRepository, telaGarcom);
 
@@ -30,7 +30,6 @@ namespace ProvaDaAcademia
             telaGarcom.AdicionaAlgunsRegistros();
             telaMesa.AdicionaAlgunsRegistros();
             telaComanda.AdicionaAlgunsRegistros();
-
 
 
             while (opcao.ToUpper() != "S")

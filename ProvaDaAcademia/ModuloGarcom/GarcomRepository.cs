@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ProvaDaAcademia.ModuloGarcom
 {
-    internal class GarcomRepository : RepositoryBase
+    internal class GarcomRepository<T> : RepositoryBase<EntidadeBase>
     {
-        public GarcomRepository(List<EntidadeBase> listaDeEntidades)
+        public GarcomRepository(List<EntidadeBase> listaDeEntidades) 
         {
             this.listaEntidades = listaDeEntidades;
         }

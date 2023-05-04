@@ -10,9 +10,9 @@ namespace ProvaDaAcademia.ModuloProduto
 {
     internal class TelaProduto : TelaBase
     {
-        public ProdutoRepository produtoRepository;
+        public ProdutoRepository<Produto> produtoRepository;
 
-        public TelaProduto(ProdutoRepository produtoRepository)
+        public TelaProduto(ProdutoRepository<Produto> produtoRepository)
         {
             this.produtoRepository = produtoRepository;
         }
