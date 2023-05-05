@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProvaDaAcademia.ClassesBase
 {
-    internal abstract class EntidadeBase
+    internal abstract class EntidadeBase<Te>
     {
         public int id { get; set; }
-        public abstract void Atualizar(EntidadeBase entidadeAtualizada);
+        public abstract void Atualizar(Te entidadeAtualizada);
 
     }
 }

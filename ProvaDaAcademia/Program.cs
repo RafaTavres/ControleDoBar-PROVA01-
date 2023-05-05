@@ -12,17 +12,17 @@ namespace ProvaDaAcademia
         static void Main(string[] args)
         {
             string opcao = "";
-            MesaRepository<Mesa> mesaRepository = new MesaRepository<Mesa>(new List<EntidadeBase>());
+            MesaRepository mesaRepository = new MesaRepository(new List<Mesa>());
             TelaMesa telaMesa = new TelaMesa(mesaRepository);
 
-            GarcomRepository<Garcom> garcomRepository = new GarcomRepository<Garcom>(new List<EntidadeBase>());
+            GarcomRepository garcomRepository = new GarcomRepository(new List<Garcom>());
             TelaGarcom telaGarcom = new TelaGarcom(garcomRepository);
 
-            ProdutoRepository<Produto> produtoRepository = new ProdutoRepository<Produto>(new List<EntidadeBase>());
+            ProdutoRepository produtoRepository = new ProdutoRepository(new List<Produto>());
             TelaProduto telaProduto = new TelaProduto(produtoRepository);
 
 
-            ComandaRepository<Comanda> comandaRepository = new ComandaRepository<Comanda>(new List<EntidadeBase>());
+            ComandaRepository comandaRepository = new ComandaRepository(new List<Comanda>());
             TelaComanda telaComanda = new TelaComanda(comandaRepository, mesaRepository, telaMesa, produtoRepository,
                 telaProduto, garcomRepository, telaGarcom);
 

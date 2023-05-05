@@ -6,32 +6,32 @@ using System.Threading.Tasks;
 
 namespace ProvaDaAcademia.ClassesBase
 {
-    internal abstract class RepositoryBase<T>
+    internal abstract class RepositoryBase<Te> where Te : EntidadeBase<Te>
     {
         protected int id = 1;
-        protected List<EntidadeBase> listaEntidades = new List<EntidadeBase>();
-        public abstract bool VerificaObjetosComErro(EntidadeBase entidade);
+        protected List<Te> listaEntidades = new List<Te>();
+        public abstract bool VerificaObjetosComErro(Te entidade);
 
         private int IncrementaId()
         {
             return id++;
         }
-        public void Inserir(EntidadeBase entidade)
+        public void Inserir(Te entidade)
         {
             entidade.id = id;
             listaEntidades.Add(entidade);
             IncrementaId();
         }
-        public void Atualizar(int id, EntidadeBase entidade)
+        public void Atualizar(int id, Te entidade)
         {
-            EntidadeBase entidade2 = Busca(id);
+            Te entidade2 = Busca(id);
             entidade2.Atualizar(entidade);
         }
-        public virtual EntidadeBase Busca(int id)
+        public virtual Te Busca(int id)
         {
-            EntidadeBase entidade = null;
+            Te entidade = null;
 
-            foreach (EntidadeBase a in listaEntidades)
+            foreach (Te a in listaEntidades)
             {
                 if (a.id == id)
                 {
@@ -43,7 +43,7 @@ namespace ProvaDaAcademia.ClassesBase
         }
         public void Deletar(int id)
         {
-            foreach (EntidadeBase a in listaEntidades)
+            foreach (Te a in listaEntidades)
             {
 
                 if (Busca(id).Equals(a))
@@ -53,7 +53,7 @@ namespace ProvaDaAcademia.ClassesBase
                 }
             }
         }
-        public List<EntidadeBase> RetornarTodos()
+        public List<Te> RetornarTodos()
         {
             return listaEntidades;
         }

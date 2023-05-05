@@ -8,18 +8,14 @@ using System.Threading.Tasks;
 
 namespace ProvaDaAcademia.ModuloProduto
 {
-    internal class ProdutoRepository<T> : RepositoryBase<EntidadeBase>
+    internal class ProdutoRepository : RepositoryBase<Produto>
     {
-        public ProdutoRepository(List<EntidadeBase> listaDeEntidades)
+        public ProdutoRepository(List<Produto> listaDeEntidades)
         {
             this.listaEntidades = listaDeEntidades;
         }
-        public override Produto Busca(int id)
-        {
-            return (Produto)base.Busca(id);
-        }
 
-        public override bool VerificaObjetosComErro(EntidadeBase entidade)
+        public override bool VerificaObjetosComErro(Produto entidade)
         {
             return false;
         }

@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace ProvaDaAcademia.ModuloProduto
 {
-    internal class TelaProduto : TelaBase
+    internal class TelaProduto : TelaBase<Produto,ProdutoRepository>
     {
-        public ProdutoRepository<Produto> produtoRepository;
+        public ProdutoRepository produtoRepository;
 
-        public TelaProduto(ProdutoRepository<Produto> produtoRepository)
+        public TelaProduto(ProdutoRepository produtoRepository)
         {
             this.produtoRepository = produtoRepository;
         }
@@ -23,13 +23,12 @@ namespace ProvaDaAcademia.ModuloProduto
         }
         public void AdicionaProduto()
         {
-            Produto produto = (Produto)PegaDadosEntidade();
+            Produto produto = PegaDadosEntidade();
             Adiciona("produto", produto, produtoRepository);
 
         }
-        public override void EscreveTodasAsEntidades(EntidadeBase a)
+        public override void EscreveTodasAsEntidades(Produto f)
         {
-            Produto f = (Produto)a;
             Console.WriteLine($"id: {f.id} | Nome: {f.nome} | Tipo : {f.tipo} | Preço: {f.preco}");
             Console.WriteLine("____________________________________________________________________________");
 
@@ -39,7 +38,7 @@ namespace ProvaDaAcademia.ModuloProduto
             MostraTodasEntidade("Produto", produtoRepository);
         }
 
-        public override EntidadeBase PegaDadosEntidade()
+        public override Produto PegaDadosEntidade()
         {
             Produto produto = new Produto();
             try
@@ -49,7 +48,7 @@ namespace ProvaDaAcademia.ModuloProduto
             }
             catch (FormatException)
             {
-                ApresentaMensagem("Digite um numero válido...", ConsoleColor.DarkYellow);
+                MensagemDeAviso("Digite um numero válido...");
                 PegaDadosEntidade();
             }
 

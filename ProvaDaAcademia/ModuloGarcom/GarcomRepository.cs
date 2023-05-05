@@ -8,18 +8,14 @@ using System.Threading.Tasks;
 
 namespace ProvaDaAcademia.ModuloGarcom
 {
-    internal class GarcomRepository<T> : RepositoryBase<EntidadeBase>
+    internal class GarcomRepository : RepositoryBase<Garcom>
     {
-        public GarcomRepository(List<EntidadeBase> listaDeEntidades) 
+        public GarcomRepository(List<Garcom> listaDeEntidades) 
         {
             this.listaEntidades = listaDeEntidades;
         }
-        public override Garcom Busca(int id)
-        {
-            return (Garcom)base.Busca(id);
-        }
 
-        public override bool VerificaObjetosComErro(EntidadeBase entidade)
+        public override bool VerificaObjetosComErro(Garcom entidade)
         {
             return false;
         }

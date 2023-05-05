@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProvaDaAcademia.ModuloComanda
 {
-    internal class Comanda : EntidadeBase
+    internal class Comanda : EntidadeBase<Comanda>
     {
          
         public int quantidadeParaPagar;
@@ -19,9 +19,8 @@ namespace ProvaDaAcademia.ModuloComanda
         public Mesa mesa;
         public bool EmAberto;
         public DateTime diaDeAbertura;
-        public override void Atualizar(EntidadeBase entidadeAtualizada)
+        public override void Atualizar(Comanda comanda)
         {
-            Comanda comanda = (Comanda)entidadeAtualizada;
             quantidadeParaPagar = comanda.quantidadeParaPagar;
             garcom = comanda.garcom;
             mesa = comanda.mesa;

@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace ProvaDaAcademia.ModuloMesa
 {
-    internal class TelaMesa : TelaBase
+    internal class TelaMesa : TelaBase<Mesa,MesaRepository>
     {
-        public MesaRepository<Mesa> mesaRepository;
+        public MesaRepository mesaRepository;
 
-        public TelaMesa(MesaRepository<Mesa> mesaRepository)
+        public TelaMesa(MesaRepository mesaRepository)
         {
             this.mesaRepository = mesaRepository;
         }
@@ -23,13 +23,12 @@ namespace ProvaDaAcademia.ModuloMesa
         }
         public void AdicionaMesa()
         {
-            Mesa mesa = (Mesa)PegaDadosEntidade();
+            Mesa mesa = PegaDadosEntidade();
             Adiciona("Mesa", mesa, mesaRepository);
 
         }
-        public override void EscreveTodasAsEntidades(EntidadeBase a)
+        public override void EscreveTodasAsEntidades(Mesa f)
         {
-            Mesa f = (Mesa)a;
             Console.WriteLine($"id: {f.id} | Numero: {f.numero} | Ocupada?: {f.Ocupada} | Local: {f.localDaMesa}");
             Console.WriteLine("____________________________________________________________________________");
 
@@ -39,7 +38,7 @@ namespace ProvaDaAcademia.ModuloMesa
             MostraTodasEntidade("Mesa", mesaRepository);
         }
 
-        public override EntidadeBase PegaDadosEntidade()
+        public override Mesa PegaDadosEntidade()
         {
             Mesa mesa = new Mesa();
             try
@@ -49,7 +48,7 @@ namespace ProvaDaAcademia.ModuloMesa
             }
             catch (FormatException )
             {
-                ApresentaMensagem("Digite um numero válido...", ConsoleColor.DarkYellow);
+                MensagemDeAviso("Digite um numero válido...");
                 PegaDadosEntidade();
             }
 

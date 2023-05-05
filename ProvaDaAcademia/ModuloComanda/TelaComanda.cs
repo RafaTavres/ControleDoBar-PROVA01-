@@ -11,19 +11,19 @@ using System.Threading.Tasks;
 
 namespace ProvaDaAcademia.ModuloComanda
 {
-    internal class TelaComanda : TelaBase
+    internal class TelaComanda : TelaBase<Comanda,ComandaRepository>
     {
-        public ComandaRepository <Comanda> comandaRepository;
-        public MesaRepository<Mesa> mesaRepository;
+        public ComandaRepository comandaRepository;
+        public MesaRepository mesaRepository;
         public TelaMesa telaMesa;
-        public ProdutoRepository<Produto> produtoRepository;
+        public ProdutoRepository produtoRepository;
         public TelaProduto telaProduto;
-        public GarcomRepository<Garcom> garcomRepository;
+        public GarcomRepository garcomRepository;
         public TelaGarcom telaGarcom;
         public List<Pedido> listaDePedidos;
 
-        public TelaComanda(ComandaRepository<Comanda> comandaRepository, MesaRepository<Mesa> mesaRepository, TelaMesa telamesa, ProdutoRepository<Produto> produtoRepository, TelaProduto telaProduto,
-            GarcomRepository<Garcom> garcomRepository, TelaGarcom telaGarcom)
+        public TelaComanda(ComandaRepository comandaRepository, MesaRepository mesaRepository, TelaMesa telamesa, ProdutoRepository produtoRepository, TelaProduto telaProduto,
+            GarcomRepository garcomRepository, TelaGarcom telaGarcom)
         {
             this.comandaRepository = comandaRepository;
             this.mesaRepository = mesaRepository;
@@ -98,14 +98,13 @@ namespace ProvaDaAcademia.ModuloComanda
             Console.WriteLine(faturamentoDiario);
             
         }
-        public void MostraTodasEntidadeAbertas(string tipoDeEntidade, RepositoryBase<EntidadeBase> repositorio)
+        public void MostraTodasEntidadeAbertas(string tipoDeEntidade, ComandaRepository repositorio)
         {
             Console.WriteLine($"{tipoDeEntidade}: ");
             Console.WriteLine("____________________________________________________________________________");
             if (VerificaListasValidas(tipoDeEntidade, repositorio) == true)
             {
-                    ComandaRepository<Comanda> comandaRepository = (ComandaRepository<Comanda>) repositorio;
-                foreach (var item in comandaRepository.RetornarTodos())
+                foreach (var item in repositorio.RetornarTodos())
                 {
                     int i = 1;
                     if (comandaRepository.Busca(i).EmAberto == true)
@@ -118,7 +117,7 @@ namespace ProvaDaAcademia.ModuloComanda
             }
         }
 
-        public override EntidadeBase PegaDadosEntidade()
+        public override Comanda PegaDadosEntidade()
         {
             int idDeBusca = 0;
             Comanda comanda = new Comanda();
@@ -137,7 +136,7 @@ namespace ProvaDaAcademia.ModuloComanda
             }
             catch (FormatException)
             {
-                ApresentaMensagem("Id inválido... ", ConsoleColor.DarkYellow);
+                MensagemDeAviso("Id inválido... ");
                 PegaDadosEntidade();
             }
             comanda.diaDeAbertura = DateTime.Now.Date;
@@ -172,7 +171,7 @@ namespace ProvaDaAcademia.ModuloComanda
             }
             catch (FormatException)
             {
-                ApresentaMensagem("Formato Inválido",ConsoleColor.DarkYellow);
+                MensagemDeAviso("Formato Inválido");
                 Console.Clear();
                 return;
             }
@@ -183,11 +182,11 @@ namespace ProvaDaAcademia.ModuloComanda
                 comanda.pedido = RegistrarPedidos();               
                 comanda.listaDePedidos.Add(comanda.pedido);
                 comanda.quantidadeParaPagar += Convert.ToInt32(comanda.pedido.produto.preco * comanda.pedido.quantidade);
-                ApresentaMensagem("Pedido Adiciona com sucesso", ConsoleColor.Green);
+                MensagemDeSucesso("Pedido Adiciona com sucesso");
             }
             else
             {
-                ApresentaMensagem("Comanda Já fechada", ConsoleColor.DarkYellow);
+                MensagemDeAviso("Comanda Já fechada");
             }
 
         }
@@ -199,7 +198,7 @@ namespace ProvaDaAcademia.ModuloComanda
             Comanda comanda = comandaRepository.Busca(idDaBusca);
             comanda.listaDePedidos.Remove(comanda.pedido);
             comanda.listaDePedidos = listaDePedidos;
-            ApresentaMensagem("Pedido deletado com sucesso", ConsoleColor.Green);
+            MensagemDeSucesso("Pedido deletado com sucesso");
             comanda.quantidadeParaPagar -= Convert.ToInt32(comanda.pedido.produto.preco * comanda.pedido.quantidade);
         }
         public void FecharComanda()
@@ -213,7 +212,7 @@ namespace ProvaDaAcademia.ModuloComanda
 
                 faturamentoDiario += comanda.quantidadeParaPagar;
             }
-            ApresentaMensagem("Comanda fechada com sucesso", ConsoleColor.Green);
+            MensagemDeSucesso("Comanda fechada com sucesso");
         }
 
         public Pedido RegistrarPedidos()
@@ -229,9 +228,8 @@ namespace ProvaDaAcademia.ModuloComanda
             return pedido;
         }
 
-        public override void EscreveTodasAsEntidades(EntidadeBase a)
+        public override void EscreveTodasAsEntidades(Comanda f)
         {
-            Comanda f = (Comanda)a;
             Console.WriteLine($"id: {f.id} | Quantidade para Pagar: {f.quantidadeParaPagar} | Em Aberto: {f.EmAberto} | Dia da Abertura { f.diaDeAbertura.Date}");
             Console.WriteLine("Lista de Pedidos");
             foreach (var item in f.listaDePedidos)

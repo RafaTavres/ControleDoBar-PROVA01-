@@ -9,14 +9,13 @@ using System.Threading.Tasks;
 
 namespace ProvaDaAcademia.ModuloGarcom
 {
-    internal class Garcom : EntidadeBase
+    internal class Garcom : EntidadeBase<Garcom>
     {
         public string nome;
         public int CNPJ;
 
-        public override void Atualizar(EntidadeBase entidadeAtualizada)
+        public override void Atualizar(Garcom garcom)
         {
-            Garcom garcom = (Garcom)entidadeAtualizada;
             nome = garcom.nome;
             CNPJ = garcom.CNPJ;
         }

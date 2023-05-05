@@ -8,20 +8,15 @@ using System.Threading.Tasks;
 
 namespace ProvaDaAcademia.ModuloComanda
 {
-    internal class ComandaRepository<T> : RepositoryBase<EntidadeBase>
+    internal class ComandaRepository : RepositoryBase<Comanda>
     {
-        public ComandaRepository(List<EntidadeBase> listaDeEntidades)
+        public ComandaRepository(List<Comanda> listaDeEntidades)
         {
             this.listaEntidades = listaDeEntidades;
         }
-        public override Comanda Busca(int id)
-        {
-            return (Comanda)base.Busca(id);
-        }
 
-        public override bool VerificaObjetosComErro(EntidadeBase entidade)
+        public override bool VerificaObjetosComErro(Comanda c)
         {
-            Comanda c = (Comanda)entidade;
             if(c.mesa == null)
             {
                 return true;

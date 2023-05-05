@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace ProvaDaAcademia.ModuloGarcom
 {
-    internal class TelaGarcom : TelaBase
+    internal class TelaGarcom : TelaBase<Garcom, GarcomRepository>
     {
-        public GarcomRepository<Garcom> garcomRepository;
+        public GarcomRepository garcomRepository;
 
-        public TelaGarcom(GarcomRepository<Garcom> garcomRepository)
+        public TelaGarcom(GarcomRepository garcomRepository)
         {
             this.garcomRepository = garcomRepository;
         }
@@ -28,9 +28,8 @@ namespace ProvaDaAcademia.ModuloGarcom
             Adiciona("Garçom", garcom, garcomRepository);
 
         }
-        public override void EscreveTodasAsEntidades(EntidadeBase a)
+        public override void EscreveTodasAsEntidades(Garcom f)
         {
-            Garcom f = (Garcom)a;
             Console.WriteLine($"id: {f.id} | Nome: {f.nome} | CNPJ : {f.CNPJ}");
             Console.WriteLine("____________________________________________________________________________");
 
@@ -40,7 +39,7 @@ namespace ProvaDaAcademia.ModuloGarcom
             MostraTodasEntidade("Garcom", garcomRepository);
         }
 
-        public override EntidadeBase PegaDadosEntidade()
+        public override Garcom PegaDadosEntidade()
         {
             Garcom garcom = new Garcom();
             try
@@ -50,7 +49,7 @@ namespace ProvaDaAcademia.ModuloGarcom
             }
             catch (FormatException)
             {
-                ApresentaMensagem("Digite um numero válido...", ConsoleColor.DarkYellow);
+                MensagemDeAviso("Digite um numero válido...");
                 PegaDadosEntidade();
             }
 

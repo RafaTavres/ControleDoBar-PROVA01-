@@ -7,15 +7,11 @@ using System.Threading.Tasks;
 
 namespace ProvaDaAcademia.ModuloMesa
 {
-    internal class MesaRepository<T> : RepositoryBase<EntidadeBase>
+    internal class MesaRepository : RepositoryBase<Mesa>
     {
-        public MesaRepository(List<EntidadeBase> listaDeEntidades)
+        public MesaRepository(List<Mesa> listaDeEntidades)
         {
             this.listaEntidades = listaDeEntidades;
-        }
-        public override Mesa Busca(int id)
-        {
-            return (Mesa)base.Busca(id);
         }
         public Mesa BuscaMesasVazias(int id)
         {
@@ -30,7 +26,7 @@ namespace ProvaDaAcademia.ModuloMesa
                 
         }
 
-        public override bool VerificaObjetosComErro(EntidadeBase entidade)
+        public override bool VerificaObjetosComErro(Mesa     entidade)
         {
             return false;
         }
