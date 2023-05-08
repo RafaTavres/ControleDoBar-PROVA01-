@@ -30,16 +30,7 @@ namespace ProvaDaAcademia.ClassesBase
         public virtual Te Busca(int id)
         {
             Te entidade = null;
-
-            foreach (Te a in listaEntidades)
-            {
-                if (a.id == id)
-                {
-                    entidade = a;
-                    return entidade;
-                }
-            }
-            return entidade;
+            return entidade = listaEntidades.Find(e => e.id == id);
         }
         public void Deletar(int id)
         {

@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProvaDaAcademia.ClassesBase
 {
-    public enum TipoMensagem 
-    { 
-        Sucesso,Erro,Aviso
-    }
-
+   
     internal abstract class TelaBase<Te,Tr> where Te : EntidadeBase<Te> where Tr : RepositoryBase<Te>
     {
         public double faturamentoDiario;
@@ -109,14 +105,12 @@ namespace ProvaDaAcademia.ClassesBase
             repositorio.Atualizar(idParaEditar, entidade);
         }
 
-        public virtual void DeletaEntidade(Tr    repositorio)
+        public virtual void DeletaEntidade(Tr repositorio)
         {
 
-            int idParaEditar = BuscaiD(repositorio);
-            if (0 == idParaEditar)
+            int idParaDeletar= BuscaiD(repositorio);
+            if (0 == idParaDeletar)
                 return;
-
-            int idParaDeletar = Convert.ToInt32(Console.ReadLine());
             repositorio.Deletar(idParaDeletar);
         }
         public int BuscaiD(Tr repositorio)
@@ -133,7 +127,6 @@ namespace ProvaDaAcademia.ClassesBase
                 MensagemDeAviso("Informe um ID válido...");
                 BuscaiD(repositorio);
             }
-
             repositorio.Busca(idParaDeletar);
             if (repositorio.Busca(idParaDeletar) == null)
                 return 0;
@@ -152,6 +145,10 @@ namespace ProvaDaAcademia.ClassesBase
         public void MensagemDeAviso(string mensagem)
         {
             ApresentaMensagem(mensagem, TipoMensagem.Aviso);
+        }
+        public enum TipoMensagem
+        {
+            Sucesso, Erro, Aviso
         }
     }
 }
