@@ -11,6 +11,9 @@ namespace ProvaDaAcademia
     {
         static void Main(string[] args)
         {
+
+
+
             string opcao = "";
             MesaRepository mesaRepository = new MesaRepository(new List<Mesa>());
             TelaMesa telaMesa = new TelaMesa(mesaRepository);

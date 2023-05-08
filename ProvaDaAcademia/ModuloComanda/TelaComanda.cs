@@ -94,9 +94,20 @@ namespace ProvaDaAcademia.ModuloComanda
         }
         public void VizualizarFaturamentoDeHoje()
         {
+            DateTime data = DateTime.Now;
             Console.WriteLine("Faturamento diário:");
-            Console.WriteLine(faturamentoDiario);
-            
+            Console.WriteLine("Digite a data que deseja verificar:");
+            try
+            {
+                data = Convert.ToDateTime(Console.ReadLine());              
+            }
+            catch (FormatException)
+            {
+                return;
+            }
+            CalcularFAturamentodoDia(data);
+
+
         }
         public void MostraTodasEntidadeAbertas(string tipoDeEntidade, ComandaRepository repositorio)
         {
@@ -104,14 +115,9 @@ namespace ProvaDaAcademia.ModuloComanda
             Console.WriteLine("____________________________________________________________________________");
             if (VerificaListasValidas(tipoDeEntidade, repositorio) == true)
             {
-                foreach (var item in repositorio.RetornarTodos())
+                foreach (var item in repositorio.RetornaComandasAbertas())
                 {
-                    int i = 1;
-                    if (comandaRepository.Busca(i).EmAberto == true)
-                    {
-                        EscreveTodasAsEntidades(item);
-                    }
-                    i++;
+                    EscreveTodasAsEntidades(item);
                 }
                
             }
@@ -142,7 +148,7 @@ namespace ProvaDaAcademia.ModuloComanda
             comanda.diaDeAbertura = DateTime.Now.Date;
 
             comanda.EmAberto = true;
-            if (comanda.mesa.Ocupada != null)
+            if (comanda.mesa != null)
                 comanda.mesa.Ocupada = true;
 
             comanda.listaDePedidos = new List<Pedido>();
@@ -201,17 +207,16 @@ namespace ProvaDaAcademia.ModuloComanda
             MensagemDeSucesso("Pedido deletado com sucesso");
             comanda.quantidadeParaPagar -= Convert.ToInt32(comanda.pedido.produto.preco * comanda.pedido.quantidade);
         }
+        public List<Comanda> CalcularFAturamentodoDia(DateTime data)
+        {
+            return comandaRepository.RetornarTodos().FindAll(c => data == c.diaDeAbertura);
+        }
         public void FecharComanda()
         {
             Console.WriteLine("Id da Comanda");
             int idDeBusca = Convert.ToInt32(Console.ReadLine());
             Comanda comanda = comandaRepository.Busca(idDeBusca);
             comanda.EmAberto = false;
-            if(comanda.diaDeAbertura == DateTime.UtcNow.Date) 
-            {
-
-                faturamentoDiario += comanda.quantidadeParaPagar;
-            }
             MensagemDeSucesso("Comanda fechada com sucesso");
         }
 

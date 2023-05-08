@@ -14,6 +14,10 @@ namespace ProvaDaAcademia.ModuloComanda
         {
             this.listaEntidades = listaDeEntidades;
         }
+        public List<Comanda> RetornaComandasAbertas()
+        {
+            return listaEntidades.FindAll(c => c.EmAberto == true);
+        }
 
         public override bool VerificaObjetosComErro(Comanda c)
         {
