@@ -1,12 +1,4 @@
 ﻿using ProvaDaAcademia.ClassesBase;
-using ProvaDaAcademia.ModuloComanda;
-using ProvaDaAcademia.ModuloMesa;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace ProvaDaAcademia.ModuloGarcom
 {
     internal class Garcom : EntidadeBase<Garcom>
