@@ -26,7 +26,7 @@ namespace ProvaDaAcademia.ClassesBase
         public virtual Te Busca(int id)
         {
             Te entidade = null;
-            return entidade = listaEntidades.Find(e => e.id == id);
+            return entidade = listaEntidades.FirstOrDefault(e => e.id == id);
         }
         public void Deletar(int id)
         {
