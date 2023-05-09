@@ -1,6 +1,6 @@
 
 # Controle de Bar 
-	![image](https://github.com/RafaTavres/ControleDoBar-PROVA01-/assets/112666872/5777cc43-5f2f-46e8-86e7-eac2e5c1cc51) 
+![image](https://github.com/RafaTavres/ControleDoBar-PROVA01-/assets/112666872/5777cc43-5f2f-46e8-86e7-eac2e5c1cc51) 
 
 Prova da Acedemia do Programador, Como base desenvolver um ConsoleApp para controle de um bar simples
 
