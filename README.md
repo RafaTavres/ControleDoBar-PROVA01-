@@ -4,7 +4,7 @@
 
 Prova da Acedemia do Programador, Como base desenvolver um ConsoleApp para controle de um bar simples
 
-## Problema a ser Resolvido ![image](https://github.com/RafaTavres/ControleDoBar-PROVA01-/assets/112666872/ac383aff-884e-4d76-bf01-f5d89d34073e)
+## Problema a ser Resolvido ![image](https://github.com/RafaTavres/ControleDoBar-PROVA01-/assets/112666872/64c573f0-1787-4e1f-8852-5705ca8c3544)
 
 
 Controle de Bar
