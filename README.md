@@ -1,13 +1,12 @@
 
-# ============= Controle de Bar =============
+# Controle de Bar ![image](https://github.com/RafaTavres/ControleDoBar-PROVA01-/assets/112666872/5777cc43-5f2f-46e8-86e7-eac2e5c1cc51) 
 
 Prova da Acedemia do Programador, Como base desenvolver um ConsoleApp para controle de um bar simples
 
 ## Problema a ser Resolvido 
 
 
-Controle de Bar ![image](https://github.com/RafaTavres/ControleDoBar-PROVA01-/assets/112666872/5777cc43-5f2f-46e8-86e7-eac2e5c1cc51)
-
+Controle de Bar
 
 	O Sr. João do Nascimento, proprietário do Bar da Galera, precisa controlar melhor o que cada cliente consumiu em
 	seu estabelecimento, para consequentemente aumentar a produtividade e alavancar o sucesso do seu bar. A equipe
