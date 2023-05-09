@@ -22,7 +22,7 @@ Controle de Bar
 
 
 
-## Requisitos Funcionais:
+## ![image](https://github.com/RafaTavres/ControleDoBar-PROVA01-/assets/112666872/a1a5d5f9-f2a9-41eb-bdc5-caed346edfb0) Requisitos Funcionais:
 	● Permitir que o garçom registre os pedidos dos clientes em suas respectivas mesas.
 	● Permitir a adição e remoção de pedidos/produtos em uma determinada conta.
 	● Gerar relatório diário de faturamento do restaurante.
